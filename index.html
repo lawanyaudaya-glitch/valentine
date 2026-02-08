@@ -4,123 +4,208 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Valentine 💖</title>
+
 <style>
-body{
-  margin:0;
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg,#ffd6e8,#fff);
-  overflow:hidden;
-}
-.card{
-  width:min(420px, 88vw);
-  background:#fff;
-  padding:28px 22px;
-  border-radius:22px;
-  box-shadow:0 12px 35px rgba(0,0,0,.12);
-  text-align:center;
-  position:relative;
-  z-index:2;
-}
-h1{ margin:0 0 8px; color:#ff3d7f; font-size:28px; }
-p{ margin:8px 0 18px; color:#444; }
-.btns{ display:flex; gap:14px; justify-content:center; }
-button{
-  padding:12px 22px;
-  font-size:18px;
-  border:none;
-  border-radius:999px;
-  cursor:pointer;
-}
-#yes{ background:#ff3d7f; color:#fff; }
-#no{
-  background:#efefef;
-  color:#333;
-  position:absolute;
-  left:55%;
-  top:70%;
-}
-.hidden{ display:none; }
+  body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#ffd6e8,#ffffff);
+    overflow:hidden;
+  }
 
-.heart{
-  position:absolute;
-  font-size:18px;
-  animation: floatUp linear forwards;
-}
-@keyframes floatUp{
-  from{ transform:translateY(0); opacity:1; }
-  to{ transform:translateY(-120vh); opacity:0; }
-}
+  .card{
+    width:min(520px, 90vw);
+    background:#fff;
+    padding:28px 22px;
+    border-radius:22px;
+    box-shadow:0 12px 35px rgba(0,0,0,.12);
+    text-align:center;
+    position:relative;
+    z-index:2;
+  }
 
-.confetti{
-  position:absolute;
-  width:8px; height:8px;
-  border-radius:50%;
-  animation: fall 2s forwards;
-}
-@keyframes fall{
-  to{ transform:translateY(110vh) rotate(720deg); opacity:0; }
-}
+  h1{
+    margin:0 0 8px;
+    color:#ff3d7f;
+    font-size:30px;
+  }
+
+  p{
+    margin:8px 0 18px;
+    color:#444;
+  }
+
+  .btns{
+    display:flex;
+    gap:14px;
+    justify-content:center;
+  }
+
+  button{
+    padding:12px 22px;
+    font-size:18px;
+    border:none;
+    border-radius:999px;
+    cursor:pointer;
+  }
+
+  #yes{
+    background:#ff3d7f;
+    color:#fff;
+  }
+
+  #no{
+    background:#eee;
+    color:#333;
+    position:absolute;
+    left:55%;
+    top:70%;
+  }
+
+  .hidden{
+    display:none;
+  }
+
+  .heart{
+    position:absolute;
+    font-size:20px;
+    animation: floatUp 3s linear forwards;
+    pointer-events:none;
+  }
+
+  @keyframes floatUp{
+    from{ transform:translateY(0); opacity:1; }
+    to{ transform:translateY(-120vh); opacity:0; }
+  }
+
+  .confetti{
+    position:absolute;
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    animation: fall 2s ease-out forwards;
+  }
+
+  @keyframes fall{
+    from{ transform:translateY(0); opacity:1; }
+    to{ transform:translateY(120vh); opacity:0; }
+  }
+
+  .image-box{
+    margin:14px auto;
+    width:min(360px, 82vw);
+    background:#f7f7f7;
+    padding:14px;
+    border-radius:18px;
+  }
+
+  .image-box img{
+    width:100%;
+    border-radius:14px;
+    display:block;
+  }
+
+  .small{
+    font-size:13px;
+    color:#777;
+  }
 </style>
 </head>
+
 <body>
 
-<iframe id="music" class="hidden"
-src="https://www.youtube.com/embed/vgStOhHqRdo?autoplay=0&loop=1&playlist=vgStOhHqRdo"
-allow="autoplay"></iframe>
+<!-- Tamil love song -->
+<iframe id="music" width="0" height="0"
+src="https://www.youtube.com/embed/vgStOhHqRdo?autoplay=0&loop=1&playlist=vgStOhHqRdo&controls=0"
+allow="autoplay">
+</iframe>
 
-<div class="card" id="q">
+<!-- QUESTION PAGE -->
+<div class="card" id="question">
   <h1>💖 Udayawarman,</h1>
-  <p><b>Will you be my Valentine forever?</b></p>
+  <p><b>Will you be my Valentine forever?</b> 💞</p>
+
   <div class="btns">
     <button id="yes">YES ❤️</button>
   </div>
+
   <button id="no">NO 😏</button>
-  <p style="font-size:12px;">— From Lawanya 💕</p>
+
+  <p class="small">— From Lawanya 💕</p>
 </div>
 
-<div class="card hidden" id="y">
-  <h1>🎉 YAY!!! 🎉</h1>
-  <p>You are my Valentine forever 💖</p>
+<!-- YAY PAGE -->
+<div class="card hidden" id="yay">
+  <h1>💖 YAY!!! 💖</h1>
+  <p>Best decision ever 🥺</p>
+
+  <div class="image-box">
+    <img src="IMG_6478.jpeg" alt="cute couple hug">
+  </div>
+
   <p>I love you ❤️</p>
+  <p class="small">— Lawanya</p>
 </div>
 
 <script>
-const yes=document.getElementById("yes");
-const no=document.getElementById("no");
-const q=document.getElementById("q");
-const y=document.getElementById("y");
-const music=document.getElementById("music");
+  const yesBtn = document.getElementById("yes");
+  const noBtn = document.getElementById("no");
+  const question = document.getElementById("question");
+  const yay = document.getElementById("yay");
+  const music = document.getElementById("music");
 
-function playMusic(){
-  music.src=music.src.replace("autoplay=0","autoplay=1");
-}
+  let musicStarted = false;
 
-function moveNo(){
-  playMusic();
-  no.style.left=Math.random()*80+"vw";
-  no.style.top=Math.random()*80+"vh";
-}
-
-no.addEventListener("mouseover",moveNo);
-no.addEventListener("touchstart",e=>{e.preventDefault();moveNo();});
-
-yes.onclick=()=>{
-  playMusic();
-  q.classList.add("hidden");
-  y.classList.remove("hidden");
-  for(let i=0;i<80;i++){
-    let c=document.createElement("div");
-    c.className="confetti";
-    c.style.left=Math.random()*100+"vw";
-    c.style.background=`hsl(${Math.random()*360},100%,60%)`;
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),2000);
+  function startMusic(){
+    if(musicStarted) return;
+    musicStarted = true;
+    music.src = music.src.replace("autoplay=0","autoplay=1");
   }
-};
+
+  document.addEventListener("click", startMusic);
+
+  function moveNo(){
+    startMusic();
+    noBtn.style.left = Math.random()*80 + "vw";
+    noBtn.style.top  = Math.random()*80 + "vh";
+  }
+
+  noBtn.addEventListener("mouseover", moveNo);
+  noBtn.addEventListener("touchstart", (e)=>{ e.preventDefault(); moveNo(); });
+
+  function hearts(){
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.textContent = "💖";
+    h.style.left = Math.random()*100 + "vw";
+    h.style.bottom = "-10px";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(), 3000);
+  }
+
+  function confetti(){
+    for(let i=0;i<60;i++){
+      const c = document.createElement("div");
+      c.className = "confetti";
+      c.style.left = Math.random()*100 + "vw";
+      c.style.top = "0";
+      c.style.background = `hsl(${Math.random()*360},90%,60%)`;
+      document.body.appendChild(c);
+      setTimeout(()=>c.remove(), 2000);
+    }
+  }
+
+  yesBtn.onclick = ()=>{
+    startMusic();
+    question.classList.add("hidden");
+    yay.classList.remove("hidden");
+    confetti();
+    setInterval(hearts, 400);
+  };
 </script>
 
 </body>
